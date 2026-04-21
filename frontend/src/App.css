@@ -1,0 +1,149 @@
+/* Xóa margin mặc định của trình duyệt */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1e1e1e; /* Màu nền tối tối cho app chat */
+  color: #e5e7eb;
+}
+
+/* 1. LAYOUT CHÍNH: Chia 2 cột (Sidebar trái, Chat phải) */
+.app-container {
+  display: flex;
+  height: 100vh; /* Cao bằng 100% màn hình */
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* 2. CỘT SIDEBAR BÊN TRÁI */
+.sidebar {
+  width: 300px;
+  background-color: #252526;
+  border-right: 1px solid #3e3e42;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.chat-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.chat-item:hover { background-color: #37373d; }
+.chat-item.active { background-color: #094771; } /* Màu khi đang được chọn */
+
+.avatar { width: 40px; height: 40px; border-radius: 50%; margin-right: 15px; position: relative; }
+.online-dot { width: 10px; height: 10px; background: #10b981; border-radius: 50%; position: absolute; bottom: 0; right: 0; border: 2px solid #252526;}
+.chat-info { flex: 1; }
+.chat-name { font-weight: 600; font-size: 15px;}
+.chat-sub { font-size: 12px; color: #9ca3af; }
+.chat-time { font-size: 11px; color: #9ca3af; }
+
+/* 3. CỘT CHAT BÊN PHẢI */
+.chat-window {
+  flex: 1; /* Chiếm toàn bộ không gian còn lại */
+  display: flex;
+  flex-direction: column;
+  background-color: #1e1e1e;
+}
+
+.chat-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid #3e3e42;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* 4. KHUNG HIỂN THỊ TIN NHẮN (Cuộn được) */
+.messages-container {
+  flex: 1;
+  overflow-y: auto; /* Cho phép cuộn khi tin nhắn quá dài */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 5. CÁC TIN NHẮN BONG BÓNG */
+.msg {
+  padding: 10px 15px;
+  border-radius: 18px;
+  margin-bottom: 8px;
+  max-width: 70%; /* Giới hạn tối đa 70% chiều ngang khung chat */
+  width: fit-content; /* QUAN TRỌNG: Bong bóng sẽ co lại theo nội dung */
+  word-wrap: break-word;
+  line-height: 1.4;
+  position: relative;
+}
+
+.msg-left {
+  background-color: #3e3e42;
+  color: white;
+  align-self: flex-start; /* Ép về bên trái */
+  border-bottom-left-radius: 4px;
+}
+
+.msg-right-wrapper {
+  align-self: flex-end; /* Ép toàn bộ khối về bên phải */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Căn các phần tử con bên trong về bên phải */
+  width: 100%;
+}
+
+.msg-right {
+  background-color: #0078d4;
+  color: white;
+  align-self: flex-end; /* Ép bong bóng về bên phải */
+  border-bottom-right-radius: 4px;
+}
+
+.status-seen { font-size: 11px; color: #9ca3af; margin-right: 5px;}
+
+/* 6. KHU VỰC NHẬP TIN NHẮN */
+.input-area {
+  padding: 15px 20px;
+  background-color: #252526;
+  border-top: 1px solid #3e3e42;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.input-box {
+  flex: 1;
+  padding: 12px 15px;
+  border-radius: 20px;
+  border: none;
+  background-color: #3e3e42;
+  color: white;
+  outline: none;
+}
+
+.send-btn, .input-area button {
+  background: none;
+  border: none;
+  color: #0078d4;
+  font-size: 20px;
+  cursor: pointer;
+}
+.send-btn:hover { color: #5eb1ef; }
